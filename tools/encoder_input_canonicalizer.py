@@ -165,7 +165,6 @@ if __name__=="__main__":
         fname = os.path.join(path, fname)
         try:
             canonicalize_encoder_file(fname)
-        except Exception, e:
-            print e
-            print fname
-            print
+        except Exception as e:
+            print (e)
+            print (fname)

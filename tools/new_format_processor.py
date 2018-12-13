@@ -68,9 +68,9 @@ def build_question_split(jsons, save_loc, keep_variables=False):
                 if not split in datasets:
                     datasets[split] = []
                 datasets[split].append((question, sql))
-    print "Question split:"
+    print ("Question split:")
     for k, v in sorted(datasets.items()):
-        print "\t%s: %d" % (k, len(v))
+        print ("\t%s: %d" % (k, len(v)))
     save_datasets(datasets, save_loc)
 
 def build_nonredundant_query_split(jsons, save_loc,
@@ -95,9 +95,9 @@ def build_nonredundant_query_split(jsons, save_loc,
             sql = tokenise(sql)
             question = preprocess_text(question)
             datasets[split].append((question, sql))
-    print "Nonredundant query split:"
+    print ("Nonredundant query split:")
     for k, v in sorted(datasets.items()):
-        print "\t%s: %d" % (k, len(v))
+        print ("\t%s: %d" % (k, len(v)))
     save_datasets(datasets, save_loc)
 
 def build_query_split(jsons, save_loc, max_questions=None, keep_variables=False):
@@ -123,9 +123,9 @@ def build_query_split(jsons, save_loc, max_questions=None, keep_variables=False)
                 sql = tokenise(sql)
                 question = preprocess_text(question)
                 datasets[split].append((question, sql))
-    print "Query split:"
+    print ("Query split:")
     for k, v in sorted(datasets.items()):
-        print "\t%s: %d" % (k, len(v))
+        print ("\t%s: %d" % (k, len(v)))
     save_datasets(datasets, save_loc)
 
 def extract_sentence_fields(sentence):
@@ -151,7 +151,7 @@ def get_jsons(json_loc):
     fnames = [os.path.join(json_loc, name) \
               for name in os.listdir(json_loc) \
               if is_question_json(os.path.join(json_loc, name))]
-    print "Read in %d jsons" % len(fnames)
+    print ("Read in %d jsons" % len(fnames))
     jsons = []
     for fname in fnames:
         with open(fname, 'r') as f:
@@ -185,9 +185,9 @@ def save_datasets(datasets, save_loc):
         with open(encode_name, 'w') as encode_f:
             with open(decode_name, 'w') as decode_f:
                 for pair in list_of_pairs:
-                    encode_f.write(pair[0].encode('utf8'))
+                    encode_f.write(pair[0])
                     encode_f.write("\n")
-                    decode_f.write(pair[1].encode('utf8'))
+                    decode_f.write(pair[1])
                     decode_f.write("\n")
 
 def main(json_loc, save_loc, max_question_copies=None, keep_variables=False):
